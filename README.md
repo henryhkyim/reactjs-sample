@@ -9,3 +9,4 @@ To setup the project:
 
 To build and run:
 1. npm start
+2. browse http://localhost:8080

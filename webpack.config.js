@@ -20,7 +20,12 @@ var config = {
   			query: {
   				presets: ["react", "env", "stage-2"]
   			}
-  		}
+  		},
+      {
+        test: /\.css$/,
+        include: SRC_DIR,
+        loaders: ['style-loader', 'css-loader']
+      }
   	]
   }
 };

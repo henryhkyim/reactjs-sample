@@ -1,0 +1,40 @@
+.container {
+	width: 1000px;
+  margin: 0px auto;
+  border: 1px solid #999999;
+}
+
+ul {
+  list-style-type: none;
+  overflow: hidden;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  float: left;
+}
+
+ul li a {
+  background-color: #CCCCCC;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 13px 15px;
+  text-decoration: none;
+  border: 1px solid #999999;
+}
+
+ul li a.currentpage {
+  background-color: #B3E8FF;
+  border: 1px solid #00096A;
+  color: #00096A;
+  font-weight: bold;
+}
+
+ul li a:hover {
+  background: #B3E8FF;
+  color: #00096A;
+  font-weight: bold;
+}

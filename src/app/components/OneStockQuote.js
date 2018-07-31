@@ -19,7 +19,7 @@ export class OneStockQuote extends React.Component {
 			priceChange: Math.round((sampleQuoteData.get(props.stock).price - sampleQuoteData.get(props.stock).prev_close) * 100 ) / 100
 		};
 		this.priceChangeCount = 0;
-		setInterval(this.refreshPrice.bind(this), 10000 * Math.random());
+		setInterval(this.refreshPrice.bind(this), Math.max(10000 * Math.random(), 3000));
 	}
 
 	refreshPrice() {

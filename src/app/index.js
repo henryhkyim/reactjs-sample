@@ -26,8 +26,8 @@ class App extends React.Component {
 		} else if (this.state.page == "component.interaction") {
 			console.log("to be built - component.interaction");
 		} else if (this.state.page == "stock.quote") {
-			let stockList = ["00005.HK", "00006.HK", "00700.HK", "07336.HK"];
-			body = <StockQuote stockList={stockList}/>
+			let stockList = ["00005.HK", "00006.HK", "00700.HK", "07336.HK", "00005.HK", "00006.HK", "00700.HK", "07336.HK"];
+			body = <StockQuote stockList={stockList}/>;
 		}
 		return (
 			<div>

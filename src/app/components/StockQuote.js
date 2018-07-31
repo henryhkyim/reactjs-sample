@@ -15,7 +15,8 @@ export class StockQuote extends React.Component {
 		return (
 			<div className="bodycontainer">
 				<h2>Stock Quote</h2>
-				<p>This is a reactjs sample demostrating the real time quote data refreshing</p>
+				<p>This is a reactjs sample demostrating the real time quote data refreshing.</p>
+				<p className="redbold">*** This is just a sample page, the price are hypothetical and random generated. ***</p>
 				<hr/>
 				{this.props.stockList.map(this.renderQuote)}
 				<div className="clearFloat"></div>

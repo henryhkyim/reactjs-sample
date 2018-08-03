@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import toTwoDecimal from "../utils/NumberUtils.js";
 
 import "../css/OneStockQuote.css";
 
@@ -16,48 +17,48 @@ export class OneStockQuote extends React.Component {
 			symbol: props.stock,
 			desc: sampleQuoteData.get(props.stock).desc,
 			price: sampleQuoteData.get(props.stock).price,
-			priceChange: Math.round((sampleQuoteData.get(props.stock).price - sampleQuoteData.get(props.stock).prev_close) * 100 ) / 100
+			priceChange: toTwoDecimal((sampleQuoteData.get(props.stock).price - sampleQuoteData.get(props.stock).prev_close))
 		};
 		this.priceChangeCount = 0;
 		setInterval(this.refreshPrice.bind(this), Math.max(10000 * Math.random(), 3000));
 	}
 
 	refreshPrice() {
-		var currentPriceChange = Math.round(Math.random() * 100) / 100;
+		var currentPriceChange = toTwoDecimal(Math.random());
 		if (this.priceChangeCount % 2 == 1) {
 			currentPriceChange = -currentPriceChange;
 		}
 		this.priceChangeCount += 1;
 		this.setState({
-			price: Math.round((this.state.price + currentPriceChange) * 100) / 100,
+			price: toTwoDecimal((this.state.price + currentPriceChange)),
 			priceChange: currentPriceChange
 		});
 	}
 
 	render() {
 	
-		let priceChangeHtml = '';
+		let priceJsx = '';
 		if (this.state.priceChange > 0) {
-		  priceChangeHtml = (<div className="quoteBoxPrice">
-		  	                   <h1 className="quoteBoxGreen">{this.state.price}</h1>
-											     <p className="quoteBoxGreen">{this.state.priceChange}</p>
-											   </div>);
+		  priceJsx = (<div className="quoteBoxPrice">
+		  	            <h1 className="quoteBoxGreen">{this.state.price}</h1>
+									  <p className="quoteBoxGreen">{this.state.priceChange}</p>
+									</div>);
 		} else if (this.state.priceChange == 0) {
-		  priceChangeHtml = (<div className="quoteBoxPrice">
-		                       <h1 className="quoteBoxBlack">{this.state.price}</h1>
-			                     <p className="quoteBoxBlack">{this.state.priceChange}</p>
-			                   </div>);
+		  priceJsx = (<div className="quoteBoxPrice">
+		                <h1 className="quoteBoxBlack">{this.state.price}</h1>
+			              <p className="quoteBoxBlack">{this.state.priceChange}</p>
+			            </div>);
 		} else {
-		  priceChangeHtml = (<div className="quoteBoxPrice">
-		                       <h1 className="quoteBoxRed">{this.state.price}</h1>
-			                     <p className="quoteBoxRed">{this.state.priceChange}</p>
-			                   </div>);
+		  priceJsx = (<div className="quoteBoxPrice">
+		              	<h1 className="quoteBoxRed">{this.state.price}</h1>
+			              <p className="quoteBoxRed">{this.state.priceChange}</p>
+			            </div>);
 		}
 		return (
 			<div className="quoteBox">
 				<h3>{this.state.symbol}</h3>
 				<p>{this.state.desc}</p>
-				{priceChangeHtml}
+				{priceJsx}
 			</div>
 		);
 	}

@@ -1,5 +1,6 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 import "../css/Header.css";
 
@@ -8,9 +9,9 @@ export const Header = (props) => {
 	return (
 		<div className="container">
 			<ul>
-				<li><a className={props.page == "basic" ? "currentpage" : ""} href="#" onClick={() => props.onChangeMenu("basic")}>Basic</a></li>
-				<li><a className={props.page == "component.interaction" ? "currentpage" : ""} href="#" onClick={() => props.onChangeMenu("component.interaction")}>Component Interaction</a></li>
-				<li><a className={props.page == "stock.quote" ? "currentpage" : ""} href="#" onClick={() => props.onChangeMenu("stock.quote")}>Stock Quote</a></li>
+				<li><NavLink to="/basic" activeClassName="currentpage">Basic</NavLink></li>
+				<li><NavLink to="/componentInteraction" activeClassName="currentpage">Component Interaction</NavLink></li>
+				<li><NavLink to="/stockQuote" activeClassName="currentpage">Stock Quote</NavLink></li>
 			</ul>
 		</div>
 		);

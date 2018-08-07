@@ -40,5 +40,6 @@ export class Basic extends React.Component {
 }
 
 Basic.propTypes = {
+	name: PropTypes.string,
 	age: PropTypes.number
 };

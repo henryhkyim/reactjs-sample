@@ -31,6 +31,9 @@ var config = {
         loaders: ['file-loader']
       }
   	]
+  },
+  devServer: {
+    historyApiFallback: true,
   }
 };
 

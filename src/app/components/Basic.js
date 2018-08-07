@@ -26,7 +26,7 @@ export class Basic extends React.Component {
 	render() {
 		return (
 			<div className="bodycontainer">
-				<h2>Basic component</h2>
+				<h2>Basic React component sample</h2>
 				<p>This is a basic reactjs component sample, which change the value in state and triggered re-rendering</p>
 				<hr/>
 				<p>My name is {this.props.name} and my age is {this.state.age}</p>

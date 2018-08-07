@@ -1,10 +1,10 @@
 # reactjs-sample
 
 reactjs sample
-- Basic
+- Basic React component sample
   - This is a basic reactjs component sample, which changes the state to trigger re-rendering
   - Demostrates key properties: props, state, child to parent function call via props
-- Component Interaction
+- Flash Game 
 - Stock Quote
   - This is a reactjs sample demostrating the real time quote data refreshing
 

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import toTwoDecimal from "../utils/NumberUtils.js";
+import { toTwoDecimal } from "../utils/NumberUtils.js";
 
 import "../css/OneStockQuote.css";
 
@@ -20,9 +20,12 @@ export class OneStockQuote extends React.Component {
 			priceChange: toTwoDecimal((sampleQuoteData.get(props.stock).price - sampleQuoteData.get(props.stock).prev_close))
 		};
 		this.priceChangeCount = 0;
-		setInterval(this.refreshPrice.bind(this), Math.max(10000 * Math.random(), 3000));
 	}
 
+	componentDidMount() {
+		setInterval(this.refreshPrice.bind(this), Math.max(10000 * Math.random(), 3000));
+	}
+	
 	refreshPrice() {
 		var currentPriceChange = toTwoDecimal(Math.random());
 		if (this.priceChangeCount % 2 == 1) {

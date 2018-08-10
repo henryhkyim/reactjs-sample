@@ -1,5 +1,6 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { QuestionPoolUtil } from "../utils/QuestionPoolUtils"
 
 import "../css/FlashGame.css";
 
@@ -20,19 +21,7 @@ export class FlashGame extends React.Component {
 	}
 
 	render() {
-		var questions = [
-			{question: "accelerando, accel.", answer: "gradually getting faster"},
-			{question: "ad libitum, ad lib.", answer: "at choice, freely"},
-			{question: "adagietto", answer: "rather slow (faster than adagio)"},
-			{question: "adagio", answer: "slow"},
-			{question: "affettuoso", answer: "tenderly"},
-			{question: "affrettando", answer: "hurrying"},
-			{question: "agitato", answer: "agitated"},
-			{question: "al, alla", answer: "to the, in the manner of"},
-			{question: "allargando", answer: "broadening (getting slower and louder)"},
-			{question: "allegretto", answer: "fairly fast (slower than allegro"}
-		]
-
+		let questionPool = new QuestionPoolUtil()
 		let contentJsx = ""
 		if (!this.state.ready) {
 			contentJsx = (<p>Are you ready to start? <button type="button" onClick={this.readyBtn.bind(this)}>Let's start</button></p>)
@@ -40,7 +29,7 @@ export class FlashGame extends React.Component {
 			contentJsx = (
 				<div className="questionContainer">
 					<h3>Question {this.state.questionNum}:</h3>
-					<p>What does "{questions[0].question}" mean?</p>
+					<p>What does "{questionPool.pullRandomQuestion().question}" mean?</p>
 					<ul>
 						<li>A. 123</li>
 						<li>B. DEF</li>

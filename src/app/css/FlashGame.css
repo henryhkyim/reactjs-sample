@@ -1,7 +1,16 @@
 .questionContainer {
-
+	clear: both;
 }
 
 .questionContainer ul li {
 	clear: both;
+}
+
+.floatLeft {
+	display: inline;
+}
+
+.floatRight {
+	float: right;
+	color: red;
 }

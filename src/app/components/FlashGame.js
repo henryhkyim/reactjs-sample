@@ -8,7 +8,8 @@ export class FlashGame extends React.Component {
 	constructor() {
     super()
     this.state = {
-    	ready: false
+    	ready: false,
+    	score: 0
     }
 	}
 
@@ -29,19 +30,17 @@ export class FlashGame extends React.Component {
 			contentJsx = (
 				<div className="questionContainer">
 					<h3>Question {this.state.questionNum}:</h3>
-					<p>What does "{questionPool.pullRandomQuestion().question}" mean?</p>
+					<p>What does "{questionPool.getQuestionByIdx(questionPool.pullQuestion())}" mean?</p>
 					<ul>
-						<li>A. 123</li>
-						<li>B. DEF</li>
-						<li>C. DEF</li>
-						<li>D. DEF</li>
+						{questionPool.pullAnswers(4).map( (ansIdx, idx) => <li key={idx}> { questionPool.getAnswerOption(idx) }. { questionPool.getAnswerByIdx(ansIdx) } </li> )}
 					</ul>
 				</div>
 			)
 		}
 		return (
 			<div className="bodycontainer">
-				<h2>Flash Game</h2>
+				<h2 className="floatLeft">Flash Game</h2>
+				<h2 className="floatRight">Score: {this.state.score}</h2>
 				{contentJsx}
 		</div>
 		);

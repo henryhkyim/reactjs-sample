@@ -8,11 +8,13 @@ import "../css/Header.css";
 export const Header = (props) => {
 	return (
 		<div className="container">
-			<ul>
-				<li><NavLink to="/basic" activeClassName="currentpage">Basic React Sample</NavLink></li>
-				<li><NavLink to="/flashGame" activeClassName="currentpage">Flash Game</NavLink></li>
-				<li><NavLink to="/stockQuote" activeClassName="currentpage">Stock Quote Sample</NavLink></li>
-			</ul>
+		  <div id="navbar">
+				<ul>
+					<li><NavLink to="/basic" activeClassName="currentpage">Basic React Sample</NavLink></li>
+					<li><NavLink to="/flashGame" activeClassName="currentpage">Flash Game</NavLink></li>
+					<li><NavLink to="/stockQuote" activeClassName="currentpage">Stock Quote Sample</NavLink></li>
+				</ul>
+			</div>
 		</div>
 		);
 };

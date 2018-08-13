@@ -6,11 +6,26 @@
 	clear: both;
 }
 
+.questionContainer ul {
+  list-style-type: none;
+}
+
+.withBorder {
+  border: 1px solid black;
+}
+
 .floatLeft {
 	display: inline;
+	float: left;
 }
 
 .floatRight {
+	display: inline;
 	float: right;
 	color: red;
+}
+
+.answerButton {
+	padding: 10px;
+	margin: 10px;
 }

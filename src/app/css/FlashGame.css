@@ -2,6 +2,10 @@
 	clear: both;
 }
 
+.resultContainer {
+	clear: both;
+}
+
 .questionContainer ul li {
 	clear: both;
 }
@@ -29,3 +33,8 @@
 	padding: 10px;
 	margin: 10px;
 }
+/*
+h2 {
+	border: 1px solid black;
+}
+*/

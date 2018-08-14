@@ -57,6 +57,14 @@ export class QuestionPoolUtil {
 		return this.currentAnswerIdxList
 	}
 
+	getUsedQuestionList() {
+		return this.usedQuestionList
+	}
+
+	clearUsedQuestionList() {
+		this.usedQuestionList = []
+	}
+
 	pullQuestion() {
 		this.currentQuestionIdx = null
 		this.currentAnswerIdxList = []

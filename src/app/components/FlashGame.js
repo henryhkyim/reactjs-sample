@@ -9,17 +9,23 @@ export class FlashGame extends React.Component {
     super()
 		this.questionPool = new QuestionPoolUtil()
     this.state = {
-    	ready: false,
+  		level: -1,
     	correct: 0,
     	incorrect: 0,
     	total: 0
     }
+    this.levelBtn.bind(this)
+    this.renderAnswer.bind(this)
 	}
 
-	readyBtn() {
-		console.log('let\'s start!')
+	levelBtn(level) {
+		console.log(`Start with level ${level}`)
+		this.questionPool.clearUsedQuestionList()
 		this.setState({
-			ready: true,
+			level: level,
+    	correct: 0,
+    	incorrect: 0,
+    	total: 0,
 			questionNum: 1
 		})
 	}
@@ -50,28 +56,61 @@ export class FlashGame extends React.Component {
 		        </li>)
 	}
 
+	renderResult(qnIdx, idx) {
+		return (
+			<div key={idx}>
+				<h3>Question {idx + 1}:</h3>
+			  <p>What does "{this.questionPool.getQuestionByIdx(qnIdx)}" mean?</p>
+				<p>Answer: {this.questionPool.getAnswerByIdx(qnIdx)}</p>
+			</div>
+			)
+	}
+
 	render() {
 		let contentJsx = ""
-		if (!this.state.ready) {
+		let headingJsx = ""
+		if (this.state.level == -1) {
 			contentJsx = (<div className="questionContainer">
 				              <p>Are you ready to start?</p>
-				              <button type="button" onClick={this.readyBtn.bind(this)}>Let's start</button>
+				              <button type="button" onClick={() => this.levelBtn(1)}>Level 1</button>
+				              <button type="button" onClick={() => this.levelBtn(2)}>Level 2</button>
+				              <button type="button" onClick={() => this.levelBtn(3)}>Level 3</button>
 				            </div>)
+			headingJsx = ""
 		} else {
-			contentJsx = (
-				<div className="questionContainer">
-					<h3>Question {this.state.questionNum}:</h3>
-					<p>What does "{this.questionPool.getQuestionByIdx(this.questionPool.pullQuestion())}" mean?</p>
-					<ul>
-						{this.questionPool.pullAnswers(4).map(this.renderAnswer.bind(this))}
-					</ul>
-				</div>
-			)
+			if (this.state.total == 10) {
+				contentJsx = (
+					<div className="resultContainer">
+						{this.questionPool.getUsedQuestionList().map(this.renderResult.bind(this))}
+						<div>
+              <p>Try again?</p>
+              <button type="button" onClick={() => this.levelBtn(1)}>Level 1</button>
+              <button type="button" onClick={() => this.levelBtn(2)}>Level 2</button>
+              <button type="button" onClick={() => this.levelBtn(3)}>Level 3</button>
+            </div>
+					</div>
+				)
+				headingJsx = <div>Level: {this.state.level}  You got {this.state.correct} out of {this.state.total}!</div>
+			} else {
+				contentJsx = (
+					<div className="questionContainer">
+						<h3>Question {this.state.questionNum}:</h3>
+						<p>What does "{this.questionPool.getQuestionByIdx(this.questionPool.pullQuestion())}" mean?</p>
+						<ul>
+							{this.questionPool.pullAnswers(this.state.level+1).map(this.renderAnswer.bind(this))}
+						</ul>
+					</div>
+				)
+				headingJsx = (<div>
+										    Level: {this.state.level} Correct: {this.state.correct} Incorrect: {this.state.incorrect} Total: {this.state.total}
+										  </div>
+										 )
+			}
 		}
 		return (
 			<div className="bodycontainer">
 				<h2 className="floatLeft">Flash Game</h2>
-				<h2 className="floatRight">Correct: {this.state.correct} Incorrect: {this.state.incorrect} Total: {this.state.total}</h2>
+				<h2 className="floatRight">{headingJsx}</h2>
 				{contentJsx}
 			</div>
 		);

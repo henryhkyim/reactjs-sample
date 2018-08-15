@@ -1,6 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { QuestionPoolUtil } from "../utils/QuestionPoolUtils"
+import { FlashGameQuestion } from "./FlashGameQuestion"
+import { FlashGameResult } from "./FlashGameResult"
 
 import "../css/FlashGame.css";
 
@@ -14,8 +15,8 @@ export class FlashGame extends React.Component {
     	incorrect: 0,
     	total: 0
     }
-    this.levelBtn.bind(this)
-    this.renderAnswer.bind(this)
+    this.levelBtn = this.levelBtn.bind(this)
+    this.handleAnswer = this.handleAnswer.bind(this)
 	}
 
 	levelBtn(level) {
@@ -48,24 +49,6 @@ export class FlashGame extends React.Component {
 		})
 	}
 
-	renderAnswer(ansIdx, idx) {
-		return (<li key={idx}> 
-							<button type="button" className="answerButton" onClick={() => this.handleAnswer(idx)}>
-			          {this.questionPool.getAnswerOption(idx)}. {this.questionPool.getAnswerByIdx(ansIdx)} 
-			        </button>
-		        </li>)
-	}
-
-	renderResult(qnIdx, idx) {
-		return (
-			<div key={idx}>
-				<h3>Question {idx + 1}:</h3>
-			  <p>What does "{this.questionPool.getQuestionByIdx(qnIdx)}" mean?</p>
-				<p>Answer: {this.questionPool.getAnswerByIdx(qnIdx)}</p>
-			</div>
-			)
-	}
-
 	render() {
 		let contentJsx = ""
 		let headingJsx = ""
@@ -80,27 +63,22 @@ export class FlashGame extends React.Component {
 		} else {
 			if (this.state.total == 10) {
 				contentJsx = (
-					<div className="resultContainer">
-						{this.questionPool.getUsedQuestionList().map(this.renderResult.bind(this))}
+					<FlashGameResult questionPool={this.questionPool}>
 						<div>
               <p>Try again?</p>
               <button type="button" onClick={() => this.levelBtn(1)}>Level 1</button>
               <button type="button" onClick={() => this.levelBtn(2)}>Level 2</button>
               <button type="button" onClick={() => this.levelBtn(3)}>Level 3</button>
             </div>
-					</div>
+					</FlashGameResult>
 				)
 				headingJsx = <div>Level: {this.state.level}  You got {this.state.correct} out of {this.state.total}!</div>
 			} else {
-				contentJsx = (
-					<div className="questionContainer">
-						<h3>Question {this.state.questionNum}:</h3>
-						<p>What does "{this.questionPool.getQuestionByIdx(this.questionPool.pullQuestion())}" mean?</p>
-						<ul>
-							{this.questionPool.pullAnswers(this.state.level+1).map(this.renderAnswer.bind(this))}
-						</ul>
-					</div>
-				)
+				contentJsx = (<FlashGameQuestion level={this.state.level}
+				                                 questionNum={this.state.questionNum} 
+				                                 questionPool={this.questionPool} 
+				                                 handleAnswer={this.handleAnswer} />
+				             )
 				headingJsx = (<div>
 										    Level: {this.state.level} Correct: {this.state.correct} Incorrect: {this.state.incorrect} Total: {this.state.total}
 										  </div>

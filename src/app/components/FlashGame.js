@@ -2,8 +2,9 @@ import React from "react";
 import { QuestionPoolUtil } from "../utils/QuestionPoolUtils"
 import { FlashGameQuestion } from "./FlashGameQuestion"
 import { FlashGameResult } from "./FlashGameResult"
+import { NewGame } from "./NewGame"
 
-import "../css/FlashGame.css";
+import "../css/FlashGame.css"
 
 export class FlashGame extends React.Component {
 	constructor() {
@@ -20,8 +21,8 @@ export class FlashGame extends React.Component {
 	}
 
 	levelBtn(level) {
-		console.log(`Start with level ${level}`)
 		this.questionPool.clearUsedQuestionList()
+		this.questionPool.clearSelectedAnswerList()
 		this.setState({
 			level: level,
     	correct: 0,
@@ -35,7 +36,7 @@ export class FlashGame extends React.Component {
 		let correct = this.state.correct
 		let incorrect = this.state.incorrect
 		let total = this.state.total + 1
-//		console.log(`you picked ${idx}, ie ${this.questionPool.getAnswerByIdx(this.questionPool.getCurrentAnswerIdxList()[idx])}`)
+		this.questionPool.addSelectedAnswerList(this.questionPool.getCurrentAnswerIdxList()[idx])
 		if (this.questionPool.getCurrentAnswerIdxList()[idx] == this.questionPool.getCurrentQuestionIdx()) {
 			correct = correct + 1
 		} else {
@@ -53,23 +54,13 @@ export class FlashGame extends React.Component {
 		let contentJsx = ""
 		let headingJsx = ""
 		if (this.state.level == -1) {
-			contentJsx = (<div className="questionContainer">
-				              <p>Are you ready to start?</p>
-				              <button type="button" onClick={() => this.levelBtn(1)}>Level 1</button>
-				              <button type="button" onClick={() => this.levelBtn(2)}>Level 2</button>
-				              <button type="button" onClick={() => this.levelBtn(3)}>Level 3</button>
-				            </div>)
+			contentJsx = <NewGame levelBtn={this.levelBtn} />
 			headingJsx = ""
 		} else {
 			if (this.state.total == 10) {
 				contentJsx = (
 					<FlashGameResult questionPool={this.questionPool}>
-						<div>
-              <p>Try again?</p>
-              <button type="button" onClick={() => this.levelBtn(1)}>Level 1</button>
-              <button type="button" onClick={() => this.levelBtn(2)}>Level 2</button>
-              <button type="button" onClick={() => this.levelBtn(3)}>Level 3</button>
-            </div>
+						<NewGame levelBtn={this.levelBtn} />
 					</FlashGameResult>
 				)
 				headingJsx = <div>Level: {this.state.level}  You got {this.state.correct} out of {this.state.total}!</div>
@@ -91,6 +82,6 @@ export class FlashGame extends React.Component {
 				<h2 className="floatRight">{headingJsx}</h2>
 				{contentJsx}
 			</div>
-		);
+		)
 	}
 }

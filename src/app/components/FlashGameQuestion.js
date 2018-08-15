@@ -5,7 +5,7 @@ import { QuestionPoolUtil } from "../utils/QuestionPoolUtils"
 export class FlashGameQuestion extends React.Component {
 
 	constructor(props) {
-		super()
+		super(props)
 		this.renderAnswer = this.renderAnswer.bind(this)
 	}
 
@@ -35,4 +35,4 @@ FlashGameQuestion.propTypes = {
 	questionNum: PropTypes.number,
 	level: PropTypes.number,
 	handleAnswer: PropTypes.func
-};
+}

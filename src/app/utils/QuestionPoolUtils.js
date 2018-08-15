@@ -5,7 +5,7 @@ export class QuestionPoolUtil {
 		this.questionPool = [
 			{question: "accelerando, accel.", answer: "gradually getting faster"},
 			{question: "adagio", answer: "slow"},
-			{question: "allegretto", answer: "fairly fast (slower than allegro"},
+			{question: "allegretto", answer: "fairly fast (slower than allegro)"},
 			{question: "allegro", answer: "lively, fast"},
 			{question: "andante", answer: "at a walking speed"},
 			{question: "lento", answer: "slow"},
@@ -33,6 +33,7 @@ export class QuestionPoolUtil {
 		]
 		this.answerOptions = ["A", "B", "C", "D", "E"]
 		this.usedQuestionList = []
+		this.selectedAnswerList = []
 		this.currentQuestionIdx = null
 		this.currentAnswerIdxList = []
 	} 
@@ -61,8 +62,20 @@ export class QuestionPoolUtil {
 		return this.usedQuestionList
 	}
 
+	getSelectedAnswerList() {
+		return this.selectedAnswerList
+	}
+
 	clearUsedQuestionList() {
 		this.usedQuestionList = []
+	}
+
+	clearSelectedAnswerList() {
+		this.selectedAnswerList = []
+	}
+
+	addSelectedAnswerList(idx) {
+		this.selectedAnswerList.push(idx)
 	}
 
 	pullQuestion() {

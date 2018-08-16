@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import "../css/NewGame.css"
+import "../../css/NewGame.css"
 
 /* a stateless component */
 export const NewGame = (props) => {

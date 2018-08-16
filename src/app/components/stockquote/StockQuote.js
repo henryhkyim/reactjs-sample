@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React from "react"
+import PropTypes from "prop-types"
 
-import { OneStockQuote } from './OneStockQuote.js';
+import { OneStockQuote } from "./OneStockQuote.js"
 
-import "../css/StockQuote.css";
+import "../../css/StockQuote.css"
 
 export class StockQuote extends React.Component {
 
 	renderQuote(symbol, index) {
-		return <OneStockQuote key={index} stock={symbol}/>;
+		return <OneStockQuote key={index} stock={symbol}/>
 	}
 
 	render() {
@@ -21,10 +21,10 @@ export class StockQuote extends React.Component {
 				{this.props.stockList.map(this.renderQuote)}
 				<div className="clearFloat"></div>
 			</div>
-		);
+		)
 	}
 }
 
 StockQuote.propTypes = {
 	stockList: PropTypes.array
-};
+}

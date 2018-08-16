@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import React from "react"
+import PropTypes from "prop-types"
+import { NavLink } from "react-router-dom"
 
-import "../css/Header.css";
+import "../../css/Header.css"
 
 /* a stateless component */
 export const Header = (props) => {
@@ -16,10 +16,10 @@ export const Header = (props) => {
 				</ul>
 			</div>
 		</div>
-		);
-};
+		)
+}
 
 Header.propTypes = {
 	page: PropTypes.string,
 	onChangeMenu: PropTypes.func
-};
+}

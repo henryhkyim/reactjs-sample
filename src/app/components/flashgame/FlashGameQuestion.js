@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { QuestionPoolUtil } from "../utils/QuestionPoolUtils"
+import { QuestionPoolUtil } from "../../utils/QuestionPoolUtils"
 
 export class FlashGameQuestion extends React.Component {
 

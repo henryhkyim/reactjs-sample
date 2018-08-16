@@ -1,10 +1,10 @@
 import React from "react";
-import { QuestionPoolUtil } from "../utils/QuestionPoolUtils"
+import { QuestionPoolUtil } from "../../utils/QuestionPoolUtils"
 import { FlashGameQuestion } from "./FlashGameQuestion"
 import { FlashGameResult } from "./FlashGameResult"
 import { NewGame } from "./NewGame"
 
-import "../css/FlashGame.css"
+import "../../css/FlashGame.css"
 
 export class FlashGame extends React.Component {
 	constructor() {

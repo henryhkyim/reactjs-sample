@@ -1,11 +1,11 @@
-import React from "react";
-import { render } from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from "react"
+import { render } from "react-dom"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
 
-import { Header } from "./Header"
-import { Basic } from "./Basic"
-import { FlashGame } from "./FlashGame"
-import { StockQuote } from "./StockQuote"
+import { Header } from "./common/Header"
+import { Basic } from "./basic/Basic"
+import { FlashGame } from "./flashgame/FlashGame"
+import { StockQuote } from "./stockquote/StockQuote"
 
 export class App extends React.Component {
 	render() {
@@ -27,6 +27,6 @@ export class App extends React.Component {
 					</div>
 				</div>
 			</BrowserRouter>
-		);
+		)
 	}
 }

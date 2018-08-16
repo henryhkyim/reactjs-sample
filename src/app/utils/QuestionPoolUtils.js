@@ -89,7 +89,6 @@ export class QuestionPoolUtil {
 		}
 		this.usedQuestionList.push(this.currentQuestionIdx)
 		this.currentAnswerIdxList.push(this.currentQuestionIdx)
-		console.log(`used question idx: ${this.usedQuestionList}`)
 		return this.currentQuestionIdx
 	}
 
@@ -116,7 +115,6 @@ export class QuestionPoolUtil {
 		while (this.currentAnswerIdxList.length < num) {
 			this.currentAnswerIdxList.push(this.pickAnswer())
 		}
-		console.log(`answer idx: ${this.currentAnswerIdxList}`)
 		this.shuffleAnswer()
 		return this.currentAnswerIdxList
 	}

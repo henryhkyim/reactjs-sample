@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React from "react"
+import PropTypes from "prop-types"
 
-import "../css/Basic.css";
+import "../../css/Basic.css"
 
 export class Basic extends React.Component {
 	constructor(props) {
@@ -35,11 +35,11 @@ export class Basic extends React.Component {
 				<br/>
 				<button type="button" onClick={this.onClickDecreaseMyAge.bind(this)}>Click me to decrease my age!</button>
 			</div>
-			);
+			)
 	}
 }
 
 Basic.propTypes = {
 	name: PropTypes.string,
 	age: PropTypes.number
-};
+}
